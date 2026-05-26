@@ -34,6 +34,17 @@ Run tests:
 uv run pytest
 ```
 
+Useful arguments/options:
+
+- `[filename]` – run a single test file (e.g. `test/test_users.py`)
+- `[filename::function_name]` – run one specific test function (e.g. `test/test_users.py::test_create_user_returns_username`)
+- `-x` – stop after the first failure
+- `-v` – verbose output
+- `-l` – show local variables in tracebacks
+- `--lf` – re-run only the last failing tests
+- `-k [pattern]` – run tests matching the pattern (e.g. `"create or url"`)
+- `--help` – show available pytest options and custom flags
+
 ## Coverage reports
 
 [Coverage reference](https://coverage.readthedocs.io/en/7.14.0/)
