@@ -170,6 +170,8 @@ def test_slow_bravo():
 
 Decorate slow tests with `@pytest.mark.slow`
 ```py
+import pytest
+
 @pytest.mark.slow
 def test_example()
 ```
@@ -189,13 +191,25 @@ Add this to `test/conftest.py`:
 import pytest
 
 def pytest_addoption(parser):
-    parser.addoption('--slow', action='store_true', default=False,
-                      help='Also run slow tests')
+    parser.addoption(
+        "--slow",
+        action="store_true",
+        default=False,
+        help="run all tests, including the slow ones",
+    )
 
-def pytest_runtest_setup(item):
-    """Skip tests if they are marked as slow and --slow is not given"""
-    if getattr(item.obj, 'slow', None) and not item.config.getvalue('slow'):
-        py.test.skip('slow tests not requested')
+
+def pytest_configure(config):
+    config.addinivalue_line("markers", "slow: mark test as slow to run")
+
+
+def pytest_collection_modifyitems(config, items):
+    if config.getoption("--slow"):
+        return
+    skip_slow = pytest.mark.skip(reason="need --slow option to run")
+    for item in items:
+        if "slow" in item.keywords:
+            item.add_marker(skip_slow)
 ```
 
 Test the behavior:
