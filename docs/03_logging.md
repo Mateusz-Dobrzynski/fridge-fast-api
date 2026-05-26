@@ -33,3 +33,7 @@ logger.info("Some info message")
 logger.warning("Some warning message")
 logger.error("Some error message")
 ```
+
+## Level up: log visualizations 🚀
+
+[Prometheus x Grafana demo](https://prometheus.io/docs/visualization/grafana/)
