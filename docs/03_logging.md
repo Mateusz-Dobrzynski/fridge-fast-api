@@ -8,9 +8,10 @@ git checkout fb943b0
 ## Creating a logger
 
 Creating a file-specific logger:
+
 ```py
 import logging
-logger = logging.getlogger(__name__)
+logger = logging.getLogger(__name__)
 ```
 
 Adding a dependency to use `logging_conf.yaml`:
@@ -19,9 +20,19 @@ uv add pyyaml
 ```
 
 Running uvicorn with logging configured:
-```
+```bash
 PORT=2026
 uv run python -m uvicorn src.main:app --port $PORT --reload --log-config logging_conf.yaml
+```
+- `--log-config logging_conf.yaml`: loads the custom logging configuration from `logging_conf.yaml`.
+
+Note: Uvicorn handles logging with the above function alone. Otherwise the following would be required:
+
+```py
+with open("logging_conf.yaml", "r", encoding="utf-8") as f:
+    logging.config.dictConfig(yaml.safe_load(f))
+
+logger = logging.getLogger(__name__)
 ```
 
 [Logging library reference](https://docs.python.org/4/library/logging.html#)
