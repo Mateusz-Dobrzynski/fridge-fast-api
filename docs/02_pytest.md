@@ -122,7 +122,7 @@ Add and run these tests:
 def test_variable_fixture_content(database_populated_with_content):
     content = database_populated_with_content
 
-    credit = content["users"].first()["credit"]
+    credit = content["users"][0]["credit"]
 
     assert credit < 0
 
@@ -130,7 +130,7 @@ def test_variable_fixture_content(database_populated_with_content):
 def test_variable_fixture_content_reprise(database_populated_with_content):
     content = database_populated_with_content
 
-    credit = content["users"].first()["credit"]
+    credit = content["users"][0]["credit"]
 
     assert credit < 0
 ```

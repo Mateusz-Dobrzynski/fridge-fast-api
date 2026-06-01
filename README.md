@@ -8,4 +8,5 @@ git checkout [hash]
 2. [pytest and quality at the source](./docs/02_pytest.md): `4c835b7`
 3. [logging](./docs/03_logging.md): `fb943b0`
 4. [.env](./docs/04_env.md)
-5. [pyodbc](./docs/04_pyodbc.md): `91143ad`
+5. Debugging with uv (coming soon…)
+6. [pyodbc](./docs/06_pyodbc.md): `91143ad`
